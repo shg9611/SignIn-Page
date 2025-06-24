@@ -1,21 +1,24 @@
 package com.example.SignInPage.dto;
 
 
-public class Dto {
-    private Long id;
+public class JoinForm {
+
     private String email;
     private String password;
 
-    public Dto(Long id, String email, String password) {
-        this.id = id;
+    public JoinForm( String email, String password) {
         this.email = email;
         this.password = password;
     }
 
+    public JoinEntity toEntity(){
+        return new JoinEntity(null,email,password);
+    }
+
+
     @Override
     public String toString() {
-        return "Dto{" +
-                "id=" + id +
+        return "JoinForm{" +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
