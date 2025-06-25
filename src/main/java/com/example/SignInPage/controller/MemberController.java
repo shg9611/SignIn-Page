@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MemberController {
 
     @GetMapping("/signup")
     public String signUpPage(){
-        return "signUpPage";
+        return "pages/signUpPage";
     }
 
     @PostMapping("/join")
@@ -43,6 +44,17 @@ public class MemberController {
         model.addAttribute("memberList", memberList);
         log.info(memberList.toString());
 
-        return "showMemberList";
+        return "pages/showMemberList";
+    }
+
+    @GetMapping("/member/{id}")
+    public String showMember(@PathVariable Long id, Model model){
+
+        JoinEntity member = joinRepository.findById(id).orElse(null);
+        model.addAttribute("member",member);
+        log.info(member.toString());
+
+        return "pages/showMember";
+
     }
 }

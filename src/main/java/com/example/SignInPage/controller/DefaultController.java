@@ -10,6 +10,6 @@ public class DefaultController {
     @GetMapping("/")
     public String defaultPage(Model model){
         model.addAttribute("username","신호근");
-        return "defaultPage";
+        return "pages/defaultPage";
     }
 }
