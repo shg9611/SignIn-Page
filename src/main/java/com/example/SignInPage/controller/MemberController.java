@@ -6,8 +6,11 @@ import com.example.SignInPage.repository.JoinRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.ArrayList;
 
 @Slf4j
 @Controller
@@ -32,5 +35,14 @@ public class MemberController {
         log.info(joinEntity.toString());
         log.info(saveEntity.toString());
         return"";
+    }
+    @GetMapping("/memberlist")
+    public String showMemberList(Model model){
+
+        ArrayList<JoinEntity> memberList = joinRepository.findAll();
+        model.addAttribute("memberList", memberList);
+        log.info(memberList.toString());
+
+        return "showMemberList";
     }
 }
