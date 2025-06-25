@@ -35,7 +35,7 @@ public class MemberController {
         log.info(joinForm.toString());
         log.info(joinEntity.toString());
         log.info(saveEntity.toString());
-        return"";
+        return"redirect:/member/"+saveEntity.getId();
     }
     @GetMapping("/memberlist")
     public String showMemberList(Model model){
