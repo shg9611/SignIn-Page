@@ -2,7 +2,7 @@ package com.example.SignInPage.controller;
 
 import com.example.SignInPage.dto.Member;
 import com.example.SignInPage.dto.MemberForm;
-import com.example.SignInPage.repository.JoinRepository;
+import com.example.SignInPage.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class MemberController {
 
     @Autowired
-    private JoinRepository joinRepository;
+    private MemberRepository memberRepository;
 
     @GetMapping("/signup")
     public String signUpPage(){
@@ -33,7 +33,7 @@ public class MemberController {
         log.info(memberForm.toString());
         log.info(joinMember.toString());
 
-        Member saveMember=joinRepository.save(joinMember);
+        Member saveMember= memberRepository.save(joinMember);
 
         log.info(saveMember.toString());
         return"redirect:/member/"+saveMember.getId();
@@ -41,7 +41,7 @@ public class MemberController {
     @GetMapping("/memberlist")
     public String showMemberList(Model model){
 
-        ArrayList<Member> memberList = joinRepository.findAll();
+        ArrayList<Member> memberList = memberRepository.findAll();
         model.addAttribute("memberList", memberList);
         log.info(memberList.toString());
 
@@ -51,7 +51,7 @@ public class MemberController {
     @GetMapping("/member/{id}")
     public String showMember(@PathVariable Long id, Model model){
 
-        Member member = joinRepository.findById(id).orElse(null);
+        Member member = memberRepository.findById(id).orElse(null);
         model.addAttribute("member",member);
         log.info(member.toString());
 
@@ -61,7 +61,7 @@ public class MemberController {
 
     @GetMapping("/member/{id}/edit")
     public String editMember(@PathVariable Long id, Model model){
-        Member editMember=joinRepository.findById(id).orElse(null);
+        Member editMember= memberRepository.findById(id).orElse(null);
 
         model.addAttribute("editMember",editMember);
 
