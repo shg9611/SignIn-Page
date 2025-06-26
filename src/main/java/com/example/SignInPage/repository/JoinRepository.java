@@ -1,12 +1,12 @@
 package com.example.SignInPage.repository;
 
-import com.example.SignInPage.dto.JoinEntity;
+import com.example.SignInPage.dto.Member;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
 
-public interface JoinRepository extends CrudRepository<JoinEntity,Long> {
+public interface JoinRepository extends CrudRepository<Member,Long> {
 
     @Override
-    ArrayList<JoinEntity> findAll();
+    ArrayList<Member> findAll();
 }

@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Getter
-public class JoinEntity {
+public class Member {
 
     @Id
     @GeneratedValue
