@@ -67,4 +67,23 @@ public class MemberController {
 
         return "pages/editMember";
     }
+
+    @PostMapping("/member/{id}/edit/saved")
+    public String update(Model model, MemberForm updateForm){
+
+        log.info(updateForm.toString());
+
+        Member updateMember=updateForm.toEntity();
+        log.info(updateMember.toString());
+
+        Member target=memberRepository.findById(updateMember.getId()).orElse(null);
+
+        if(target!=null){
+            Member saved = memberRepository.save(updateMember);
+            log.info(saved.toString());
+        }
+
+        return "redirect:/member/"+updateMember.getId();
+
+    }
 }
